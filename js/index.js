@@ -30,10 +30,10 @@ let player;
 let showDebug = false;
 
 function preload() {
-    this.load.image("tiles", "/assets/tilesets/tuxmon-sample-32px-extruded.png");
-    this.load.tilemapTiledJSON("map", "/assets/tilemaps/tuxemon-town.json");
+    this.load.image("tiles", "../assets/tilesets/tuxmon-sample-32px-extruded.png");
+    this.load.tilemapTiledJSON("map", "../assets/tilemaps/tuxemon-town.json");
 
-    this.load.spritesheet('player', 'assets/spritesheet/player.png', { frameWidth: 48, frameHeight: 64 });
+    this.load.spritesheet('player', '../assets/spritesheet/player.png', { frameWidth: 48, frameHeight: 64 });
 
 }
 
