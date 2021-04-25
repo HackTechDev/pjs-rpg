@@ -109,7 +109,7 @@ cursors = this.input.keyboard.createCursorKeys();
 
 // Help text that has a "fixed" position on the screen
 this.add
-.text(16, 16, 'Arrow keys to move\nPress "D" to show hitboxes', {
+.text(16, 16, 'Move: Arrow keys\nShow hitboxes: D key', {
 font: "18px monospace",
 fill: "#000000",
 padding: { x: 20, y: 10 },
