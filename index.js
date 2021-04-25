@@ -40,8 +40,6 @@ function preload() {
 function create() {
     const map = this.make.tilemap({ key: "map" });
 
-    // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
-    // Phaser's cache (i.e. the name you used in preload)
     const tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
@@ -51,27 +49,17 @@ function create() {
 
     worldLayer.setCollisionByProperty({ collides: true });
 
-    // By default, everything gets depth sorted on the screen in the order we created things. Here, we
-    // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
-    // Higher depths will sit on top of lower depth objects.
     aboveLayer.setDepth(10);
 
-    // Object layers in Tiled let you embed extra info into a map - like a spawn point or custom
-    // collision shapes. In the tmx file, there's an object layer with a point named "Spawn Point"
     const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 
-    // Create a sprite with physics enabled via the physics system. The image used for the sprite has
-    // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
     player = this.physics.add
         .sprite(spawnPoint.x, spawnPoint.y, "player")
         .setSize(30, 25)
         .setOffset(10, 40);
 
-    // Watch the player and worldLayer for collisions, for the duration of the scene:
     this.physics.add.collider(player, worldLayer);
 
-    // Create the player's walking animations from the texture atlas. These are stored in the global
-    // animation manager so any sprite can access them.
     const anims = this.anims;
     anims.create({
         key: "player-left-walk",
@@ -107,7 +95,6 @@ camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
 cursors = this.input.keyboard.createCursorKeys();
 
-// Help text that has a "fixed" position on the screen
 this.add
 .text(16, 16, 'Move: Arrow keys\nShow hitboxes: D key', {
 font: "18px monospace",
@@ -118,12 +105,9 @@ backgroundColor: "#ffffff"
 .setScrollFactor(0)
     .setDepth(30);
 
-    // Debug graphics
     this.input.keyboard.once("keydown_D", event => {
-            // Turn on physics debugging to show player's hitbox
             this.physics.world.createDebugGraphic();
 
-            // Create worldLayer collision graphic above the player, but below the help text
             const graphics = this.add
             .graphics()
             .setAlpha(0.75)
