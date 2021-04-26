@@ -25,6 +25,8 @@ export default class WorldScene extends Phaser.Scene {
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 
+        console.log(spawnPoint.x + " " + spawnPoint.y);
+
         this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
         
