@@ -37,13 +37,10 @@ export default class Player {
             repeat: -1
         });
 
-
-        // Create the physics-based sprite that we will move around and animate
         this.sprite = scene.physics.add
             .sprite(x, y, "player", 0)
             .setSize(30, 25)
             .setOffset(10, 40);
-
 
         this.keys = scene.input.keyboard.createCursorKeys();
     }
@@ -60,27 +57,22 @@ export default class Player {
         const speed = 175;
         const prevVelocity = sprite.body.velocity.clone();
 
-        // Stop any previous movement from the last frame
         sprite.body.setVelocity(0);
 
-        // Horizontal movement
         if (keys.left.isDown) {
             sprite.body.setVelocityX(-speed);
         } else if (keys.right.isDown) {
             sprite.body.setVelocityX(speed);
         }
 
-        // Vertical movement
         if (keys.up.isDown) {
             sprite.body.setVelocityY(-speed);
         } else if (keys.down.isDown) {
             sprite.body.setVelocityY(speed);
         }
 
-        // Normalize and scale the velocity so that player can't move faster along a diagonal
         sprite.body.velocity.normalize().scale(speed);
 
-        // Update the animation last and give left/right animations precedence over up/down animations
         if (keys.left.isDown) {
             sprite.anims.play("player-left-walk", true);
         } else if (keys.right.isDown) {
@@ -91,8 +83,6 @@ export default class Player {
             sprite.anims.play("player-front-walk", true);
         } else {
             sprite.anims.stop();
-
-            // If we were moving, pick and idle frame to use
 
             if (prevVelocity.x < 0) {
                 sprite.setTexture("player", 9);
