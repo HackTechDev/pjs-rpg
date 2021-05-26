@@ -16,6 +16,7 @@ imagecopy($destination_image, $source_image, 0, 0, 0, 0, $width, $height);
 
 $width = 48;
 $height = 64;
+
 $posx = 1;
 $posy= 133;
 $source_image = imagecreatefrompng("player_0_2.png");
