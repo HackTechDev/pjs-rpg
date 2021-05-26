@@ -6,7 +6,7 @@ export default class WorldScene extends Phaser.Scene {
         this.load.image("tiles", "../assets/tilesets/tuxmon-sample-32px-extruded.png");
         this.load.tilemapTiledJSON("map", "../assets/tilemaps/tuxemon-town.json");
 
-        this.load.spritesheet('player', '../assets/spritesheet/player.png', { frameWidth: 48, frameHeight: 64 });
+         this.load.atlas("atlas", "./assets/atlas/atlas.png", "./assets/atlas/atlas.json");
 
     }
 
@@ -26,11 +26,22 @@ export default class WorldScene extends Phaser.Scene {
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 
         console.log(spawnPoint.x + " " + spawnPoint.y);
+        
+        
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
         
+        
+        
+        
         this.physics.add.collider(this.player.sprite, worldLayer);
+
+
+
+
+
+
 
 
         const camera = this.cameras.main;
