@@ -26,30 +26,17 @@ export default class WorldScene extends Phaser.Scene {
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
 
         console.log(spawnPoint.x + " " + spawnPoint.y);
-        
-        
 
         this.player = new Player(this, spawnPoint.x, spawnPoint.y);
 
-        
-        
-        
-        
         this.physics.add.collider(this.player.sprite, worldLayer);
-
-
-
-
-
-
-
 
         const camera = this.cameras.main;
         camera.startFollow(this.player.sprite);
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         this.add
-            .text(16, 16, 'Move: Arrow keys\nShow hitboxes: D key', {
+            .text(16, 16, 'Move: Arrow keys', {
                 font: "18px monospace",
                 fill: "#000000",
                 padding: { x: 20, y: 10 },
