@@ -18,7 +18,7 @@ export default class Player {
 
         anims.create({
             key: "player-right-walk",
-            frames: anims.generateFrameNumbers('player', { frames: [ 3, 4, 5 ] }),
+            frames: anims.generateFrameNumbers('player', { frames: [ 3, 4, 5  ] }),
             frameRate: 10,
             repeat: -1
         });
@@ -74,9 +74,26 @@ export default class Player {
         sprite.body.velocity.normalize().scale(speed);
 
         if (keys.left.isDown) {
+
             sprite.anims.play("player-left-walk", true);
+            console.log("Left");
+
+            var frameName = sprite.anims.getFrameName();
+            console.log("frameName: " + frameName);
+
+
         } else if (keys.right.isDown) {
+
             sprite.anims.play("player-right-walk", true);
+
+            //var frameCount = sprite.anims.getTotalFrames();
+            //console.log("frameCount: " + frameCount);
+
+            console.log("Right");
+
+            var frameName = sprite.anims.getFrameName();
+            console.log("frameName: " + frameName);
+
         } else if (keys.up.isDown) {
             sprite.anims.play("player-back-walk", true);
         } else if (keys.down.isDown) {
